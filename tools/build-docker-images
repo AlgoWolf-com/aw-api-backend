@@ -20,7 +20,7 @@ function build_image() {
     _cyn "Building ${function_name} from ${function_dir}"
     docker build \
     -t "${image_tag}" \
-    -f "$PWD/dockerfiles/${DOCKERFILE}" \
+    -f "${function_dir}/Dockerfile" \
     --build-arg FUNCTION_DIR="${function_dir}" \
     ${quiet:+"--quiet"} \
     .;

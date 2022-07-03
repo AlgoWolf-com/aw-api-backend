@@ -2,10 +2,10 @@ import json
 import pathlib
 import logging
 import traceback
-import jsonschema
-from jsonschema import validate
 from typing import Callable, Dict
 from functools import wraps
+import jsonschema
+from jsonschema import validate
 from apigw import Response
 
 logger = logging.getLogger(__name__)

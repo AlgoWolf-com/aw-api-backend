@@ -34,7 +34,12 @@ class Response:
 
     def generate_response(self):
         headers = {
-            **{"Content-Type": "application/json"},
+            **{
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT",
+            },
             **({} if self.headers is None else self.headers),
         }
         body = {} if self.body is None else self.body
@@ -69,11 +74,12 @@ class Router:
 
     def _get_params(self, multi_value_params: Dict) -> Dict:
         params = {}
-        for key in multi_value_params:
-            if len(multi_value_params[key]) == 1:
-                params[key] = multi_value_params[key][0]
-            elif len(multi_value_params[key]) > 1:
-                params[key] = multi_value_params[key]
+        if multi_value_params is not None:
+            for key in multi_value_params:
+                if len(multi_value_params[key]) == 1:
+                    params[key] = multi_value_params[key][0]
+                elif len(multi_value_params[key]) > 1:
+                    params[key] = multi_value_params[key]
         return params
 
     def route(self, path: str, methods: Tuple[HttpMethod] = (HttpMethod.GET,)) -> None:
