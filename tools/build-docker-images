@@ -1,0 +1,50 @@
+#!/bin/bash -eu
+
+set -o pipefail
+
+aws_account_id=$(
+    aws sts get-caller-identity \
+        --no-cli-pager \
+        --query Account \
+        --output text
+)
+
+if [[ ${QUIET:-"true"} == "true" ]]; then
+    quiet="yes"
+fi
+
+_cyn()  { tput setaf 6; echo "${@}"; tput sgr0; }
+
+function build_image() {
+    image_tag="${repository_url}:${DOCKER_TAG:-latest}";
+    _cyn "Building ${function_name} from ${function_dir}"
+    docker build \
+    -t "${image_tag}" \
+    -f "$PWD/dockerfiles/${DOCKERFILE}" \
+    --build-arg FUNCTION_DIR="${function_dir}" \
+    ${quiet:+"--quiet"} \
+    .;
+    echo "${image_tag}"
+}
+
+function build_and_run() {
+    build_image
+    docker run \
+    -it --rm \
+    --env-file ${ENV_FILE-} \
+    -p ${PORT:-8080}:${PORT:-8080}/tcp \
+    ${image_tag}
+}
+
+function_dir=$(dirname "${@}");
+function_name=$(basename "${function_dir}");
+repository_url="${aws_account_id}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ENVIRONMENT_NAME}-${function_name}"
+
+if [[ -n ${BUILD_AND_RUN-} ]]; then
+    build_and_run
+else
+    build_image
+fi
+
+
+
