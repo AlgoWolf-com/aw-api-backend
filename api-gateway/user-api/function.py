@@ -15,5 +15,5 @@ def handler(event, ctx):
 
 
 @router.route("/message", methods=(HttpMethod.GET,))
-def test_ept_post(*_):
+def get_message(*_):
     return Response.success({"message": "Hello World!"})
