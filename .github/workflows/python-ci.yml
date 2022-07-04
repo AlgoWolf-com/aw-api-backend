@@ -36,5 +36,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        chmod +x infrastructure/tools/run_tests
-        infrastructure/tools/run_tests
+        pytest
