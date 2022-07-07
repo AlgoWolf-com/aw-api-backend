@@ -1,0 +1,43 @@
+{
+    "resource": "/{path+}",
+    "path": "/message",
+    "httpMethod": "GET",
+    "queryStringParameters": {},
+    "multiValueQueryStringParameters": {},
+    "pathParameters": {
+        "path": "message"
+    },
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "3ahlvn",
+        "resourcePath": "/{path+}",
+        "httpMethod": "POST",
+        "extendedRequestId": "UotjYEhoywMFygA=",
+        "requestTime": "02/Jul/2022:11:17:28 +0000",
+        "path": "/message",
+        "accountId": "977407872120",
+        "protocol": "HTTP/1.1",
+        "stage": "Dev",
+        "domainPrefix": "api",
+        "requestTimeEpoch": 1656760648693,
+        "requestId": "e677d10d-755d-4ced-91cd-c1af4abeea5e",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "60.242.233.176",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": null,
+            "user": null
+        },
+        "domainName": "api.algowolf.com",
+        "apiId": "r9f9uficy2"
+    },
+    "body": null,
+    "isBase64Encoded": false
+}

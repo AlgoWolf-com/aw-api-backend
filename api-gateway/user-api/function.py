@@ -9,11 +9,11 @@ logger.critical("Function startup")
 router = Router()
 
 
-@validate_json_schema(__name__)
+@validate_json_schema(__file__)
 def handler(event, ctx):
-    return router.handle(event, ctx).generate_response()
+    return router.handle(event, ctx)
 
 
 @router.route("/message", methods=(HttpMethod.GET,))
 def get_message(*_):
-    return Response.success({"message": "Hello World!"})
+    return Response.ok({"message": "Hello World!"})

@@ -28,7 +28,7 @@ def validate_json_schema(name: str) -> Dict:
             except jsonschema.exceptions.ValidationError:
                 logger.error(traceback.format_exc())
                 return Response(
-                    status_code=400, body={"error": "Unable to parse body request."}
+                    status_code=400, body={"error": "Unable to parse body request"}
                 ).generate_response()
 
             return func(event, ctx)
@@ -47,7 +47,7 @@ def hide_errors() -> Dict:
             except Exception:  # pylint: disable=broad-except
                 logger.error(traceback.format_exc())
                 return Response(
-                    status_code=400, body={"error": "Unable to parse body request."}
+                    status_code=400, body={"error": "Unable to parse body request"}
                 ).generate_response()
 
         return wrapper

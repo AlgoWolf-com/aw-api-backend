@@ -8,7 +8,14 @@ setuptools.setup(
     description="Shared Python library for Lambdas.",
     packages=setuptools.find_packages(where="src"),
     package_dir={"": "src"},
-    install_requires=["attrs", "cattrs", "jsonschema", "pytest", "requests"],
+    install_requires=[
+        "attrs",
+        "cattrs",
+        "jsonschema",
+        "pytest",
+        "requests",
+        "Werkzeug",
+    ],
     classifiers=(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
